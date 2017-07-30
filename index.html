@@ -1,1 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-us">
 
+<head>
+  <meta charset="UTF-8">
+  <title>Save Surfer Micah</title>
+</head>
+
+<body>
+
+  <div id="game">
+    <p>Dont let surfer Micah get eaten by a shark by guessing the word! Press any key to get started!</p> -->
+
+
+  </div> <!-- >>> end id "game" -->
+
+  <script type="text/javascript">
+
+  var words = ["wetsuit", "surfboard", "hot bikini mama", "pitted", "barrel", "swell"];
+
+  var wins = 0;
+  var wordSelected = ""
+  var lettersGuessed = [];
+  var blankLetterArrayStart = [];
+  var blankLetterArrayUpdated = [];
+// This function calculates a random int including min and max values.
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+}
+// This function takes the random int from get getRandomIntInclusive fucntion and chooses a word from the words array.
+function getWord() {
+	var index = getRandomIntInclusive(0, words.length - 1);
+	wordSelected = words[index];
+	return wordSelected;
+}
+
+// This function takes the length of the chose word and replaces adds that many blanks to an array.
+function wordToBlanks() {
+	var wordLength = getWord().length;
+	
+	for (var i = 0; i < getWord().length; i++) {
+	blankLetterArrayStart.push("_ ");
+	}
+
+	return blankLetterArrayStart;
+}
+
+	wordToBlanks();
+	console.log(blankLetterArrayStart);
+	console.log(wordSelected);
+
+
+  // function runs when user presses key.
+//   document.onkeyup = function(event) {
+// 	   // Determines which key was pressed.
+//       var userGuess = event.key;
+// }
+ 
+
+
+
+
+
+	var html =
+
+	          "<p>Word: " + blankLetterArrayStart + "</p>" +
+	          "<p>lettersGuessed: " + lettersGuessed + "</p>" +
+	          "<p>wins: " + wins + "</p>";
+
+	        // Set the inner HTML contents of the #game div to our html string
+	        document.querySelector("#game").innerHTML = html;
+
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>
