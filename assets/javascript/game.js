@@ -4,7 +4,7 @@
   var wordSelected = ""
   var lettersGuessed = [];
   var blankLetterArrayStart = [];
-  var blankLetterArrayUpdated = [];
+  var guessesRemaining = 10;
 // This function calculates a random int including min and max values.
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
@@ -38,18 +38,32 @@ function wordToBlanks() {
 document.onkeyup = function(event) {
 	   // Determines which key was pressed.
     	var userGuess = event.key;
-      	alert(userGuess + wordSelected.length);
+      	// alert(userGuess + wordSelected.length);
       	var indices = [];
-
+      		// This if statements finds the indices of all the digits in which the letter occurs
 			if (wordSelected.includes(userGuess)) {
 				for (var i = 0; i < wordSelected.length; i++) {
 
 					if (wordSelected[i] === userGuess) indices.push(i);
+					
 				}
-			
+
+
+				blankLetterArrayStart = blankLetterArrayStart.split("  ");
+
+				for (var j = 0; j < indices.length; j++) {
+					blankLetterArrayStart[indices[j]] = userGuess;						
+				}
+
+				blankLetterArrayStart = blankLetterArrayStart.join("  ");
+console.log(blankLetterArrayStart);
 
 			} else {
-				alert("no");
+				guessesRemaining = guessesRemaining - 1;
+console.log(guessesRemaining);
+				lettersGuessed.push(userGuess);
+console.log(lettersGuessed);
+				
 			}
 		// }
 
