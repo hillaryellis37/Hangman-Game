@@ -4,6 +4,7 @@
   var wordSelected = ""
   var lettersGuessed = [];
   var blankLetterArrayStart = [];
+  var guessesCorrect = 0;
   var guessesRemaining = 10;
 // This function calculates a random int including min and max values.
 function getRandomIntInclusive(min, max) {
@@ -18,14 +19,16 @@ function getWord() {
 	return wordSelected;
 }
 
-// This function takes the length of the chose word and replaces adds that many blanks to an array. Returns an array of
+// This function takes the length of the chosen word and replaces adds that many blanks to an array. Returns an array of blanks
 function wordToBlanks() {
 	var wordLength = getWord().length;
+	console.log(wordSelected);
+	console.log(wordLength);
 	
-	for (var i = 0; i < getWord().length; i++) {
-	blankLetterArrayStart.push("_ ");
+	for (var i = 0; i < wordLength; i++) {
+	blankLetterArrayStart.push("_");
 	}
-	blankLetterArrayStart = blankLetterArrayStart.join("  ");
+	// blankLetterArrayStart = blankLetterArrayStart.join("  ");
 	return blankLetterArrayStart;
 }
 
@@ -42,20 +45,21 @@ document.onkeyup = function(event) {
       	var indices = [];
       		// This if statements finds the indices of all the digits in which the letter occurs
 			if (wordSelected.includes(userGuess)) {
-				for (var i = 0; i < wordSelected.length; i++) {
 
+				for (var i = 0; i < wordSelected.length; i++) {
 					if (wordSelected[i] === userGuess) indices.push(i);
 					
 				}
 
 
-				blankLetterArrayStart = blankLetterArrayStart.split("  ");
+				// blankLetterArrayStart = blankLetterArrayStart.split("  "); 
 
 				for (var j = 0; j < indices.length; j++) {
+					guessesCorrect = guessesCorrect + 1;
 					blankLetterArrayStart[indices[j]] = userGuess;						
 				}
 
-				blankLetterArrayStart = blankLetterArrayStart.join("  ");
+				// blankLetterArrayStart = blankLetterArrayStart.join("  ");
 console.log(blankLetterArrayStart);
 
 			} else {
@@ -65,9 +69,16 @@ console.log(guessesRemaining);
 console.log(lettersGuessed);
 				
 			}
-		// }
 
-}
+			if (wordSelected.length === guessesCorrect) {
+				alert("you win!");
+				wins = wins + 1;
+			} 
+
+			if (guessesRemaining === 0) {
+				alert("you lose!")
+			}
+ }    //>>> end of fucntion(event)
 
 
 
@@ -84,3 +95,5 @@ console.log(lettersGuessed);
 
 	        // Set the inner HTML contents of the #game div to our html string
 	        document.querySelector("#game").innerHTML = html;
+
+
