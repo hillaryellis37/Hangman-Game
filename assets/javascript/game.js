@@ -5,7 +5,7 @@
   var lettersGuessed = [];
   var blankLetterArrayStart = [];
   var guessesCorrect = 0;
-  var guessesRemaining = 10;
+  var guessesRemaining = 8;
   var userGuessRecord = [1]; //>>> this is to prevent the user from enterting a letter more than once
 // This function calculates a random int including min and max values.
 function getRandomIntInclusive(min, max) {
@@ -45,12 +45,23 @@ function lettersInArray(array, value) {
 	}
 }
 
+document.getElementById("restart").onclick = function(restartButton) {
+	wins = 0
+  	wordSelected = "";
+  	lettersGuessed = [];
+  	blankLetterArrayStart = [];
+  	guessesCorrect = 0;
+  	guessesRemaining = 8;
+  	userGuessRecord = [1];
+  	startfunction();
+}
+
 function resetStats() {
   	wordSelected = "";
   	lettersGuessed = [];
   	blankLetterArrayStart = [];
   	guessesCorrect = 0;
-  	guessesRemaining = 10;
+  	guessesRemaining = 8;
   	userGuessRecord = [1];
 }
 
@@ -85,7 +96,6 @@ document.onkeyup = function(event) {
 			} else {
 				if (wordSelected.includes(userGuess)) {
 
-					guessesRemaining = guessesRemaining - 1;
 					lettersGuessed.push(userGuess);	
 
 					for (var i = 0; i < wordSelected.length; i++) {
