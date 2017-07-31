@@ -45,9 +45,33 @@ function lettersInArray(array, value) {
 	}
 }
 
+function resetStats() {
+  	wordSelected = "";
+  	lettersGuessed = [];
+  	blankLetterArrayStart = [];
+  	guessesCorrect = 0;
+  	guessesRemaining = 10;
+  	userGuessRecord = [1];
+}
 
+function startfunction() {
 	wordToBlanks();
 	console.log(wordSelected);
+
+
+var html =
+
+	          "<p>Word: " + blankLetterArrayStart.join("   ").toUpperCase() + "</p>" +
+	          "<p>Letters Guessed: " + lettersGuessed.join("   ").toUpperCase() + "</p>" +
+	          "<p>Remaining Guesses: " + guessesRemaining + "</p>" +
+	          "<p>Wins: " + wins + "</p>";
+
+	        // Set the inner HTML contents of the #game div to our html string
+	        document.querySelector("#game").innerHTML = html;
+}
+
+startfunction();
+
 
 document.onkeyup = function(event) {
 	   // Determines which key was pressed.
@@ -61,12 +85,12 @@ document.onkeyup = function(event) {
 			} else {
 				if (wordSelected.includes(userGuess)) {
 
+					guessesRemaining = guessesRemaining - 1;
+					lettersGuessed.push(userGuess);	
 
 					for (var i = 0; i < wordSelected.length; i++) {
-						if (wordSelected[i] === userGuess) indices.push(i);
-						
+						if (wordSelected[i] === userGuess) indices.push(i);						
 					}
-
 					for (var j = 0; j < indices.length; j++) {
 						guessesCorrect = guessesCorrect + 1;
 						blankLetterArrayStart[indices[j]] = userGuess;						
@@ -76,14 +100,16 @@ document.onkeyup = function(event) {
 					guessesRemaining = guessesRemaining - 1;
 					lettersGuessed.push(userGuess);				
 				}
-
 				if (wordSelected.length === guessesCorrect) {
 						alert("you win!");
 						wins = wins + 1;
+						resetStats();
+						startfunction();
 				} 
-
 				if (guessesRemaining === 0) {
 						alert("you lose!")
+						resetStats();
+						startfunction();
 				}
 			}
 var html =
