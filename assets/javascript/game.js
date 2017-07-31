@@ -6,6 +6,7 @@
   var blankLetterArrayStart = [];
   var guessesCorrect = 0;
   var guessesRemaining = 10;
+  var userGuessRecord = [1]; //>>> this is to prevent the user from enterting a letter more than once
 // This function calculates a random int including min and max values.
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
@@ -23,77 +24,93 @@ function getWord() {
 function wordToBlanks() {
 	var wordLength = getWord().length;
 	console.log(wordSelected);
-	console.log(wordLength);
 	
 	for (var i = 0; i < wordLength; i++) {
 	blankLetterArrayStart.push("_");
 	}
-	// blankLetterArrayStart = blankLetterArrayStart.join("  ");
 	return blankLetterArrayStart;
 }
+//>>> This function returns true if the letter has already been guessed by the user.
+function lettersInArray(array, value) {
+	var count = 0 
+	for (var i = 0; i < array.length; i++) {
+		if (array[i] == value) count++;
+	}
+	if (count === 2) {
+		array.pop();
+		return true;
+	}	
+	else {
+		return false;
+	}
+}
+
 
 	wordToBlanks();
-	console.log(blankLetterArrayStart);
 	console.log(wordSelected);
 
-
-  // function runs when user presses key.
 document.onkeyup = function(event) {
 	   // Determines which key was pressed.
     	var userGuess = event.key;
-      	// alert(userGuess + wordSelected.length);
+      	userGuessRecord.push(userGuess);
       	var indices = [];
+      	var x = lettersInArray(userGuessRecord, userGuess);
       		// This if statements finds the indices of all the digits in which the letter occurs
-			if (wordSelected.includes(userGuess)) {
-
-				for (var i = 0; i < wordSelected.length; i++) {
-					if (wordSelected[i] === userGuess) indices.push(i);
-					
-				}
-
-
-				// blankLetterArrayStart = blankLetterArrayStart.split("  "); 
-
-				for (var j = 0; j < indices.length; j++) {
-					guessesCorrect = guessesCorrect + 1;
-					blankLetterArrayStart[indices[j]] = userGuess;						
-				}
-
-				// blankLetterArrayStart = blankLetterArrayStart.join("  ");
-console.log(blankLetterArrayStart);
-
+			if (x) {
+				alert("You have already chosen this letter. Please try another letter.");
 			} else {
-				guessesRemaining = guessesRemaining - 1;
-console.log(guessesRemaining);
-				lettersGuessed.push(userGuess);
-console.log(lettersGuessed);
-				
+				if (wordSelected.includes(userGuess)) {
+
+
+					for (var i = 0; i < wordSelected.length; i++) {
+						if (wordSelected[i] === userGuess) indices.push(i);
+						
+					}
+
+					for (var j = 0; j < indices.length; j++) {
+						guessesCorrect = guessesCorrect + 1;
+						blankLetterArrayStart[indices[j]] = userGuess;						
+					}
+
+				} else {
+					guessesRemaining = guessesRemaining - 1;
+					lettersGuessed.push(userGuess);				
+				}
+
+				if (wordSelected.length === guessesCorrect) {
+						alert("you win!");
+						wins = wins + 1;
+				} 
+
+				if (guessesRemaining === 0) {
+						alert("you lose!")
+				}
 			}
+var html =
 
-			if (wordSelected.length === guessesCorrect) {
-				alert("you win!");
-				wins = wins + 1;
-			} 
-
-			if (guessesRemaining === 0) {
-				alert("you lose!")
-			}
- }    //>>> end of fucntion(event)
-
-
-
-
-
-
-
-
-	var html =
-
-	          "<p>Word: " + blankLetterArrayStart + "</p>" +
-	          "<p>lettersGuessed: " + wordSelected + "</p>" +
-	          "<p>wins: " + wins + "</p>";
+	          "<p>Word: " + blankLetterArrayStart.join("   ").toUpperCase() + "</p>" +
+	          "<p>Letters Guessed: " + lettersGuessed.join("   ").toUpperCase() + "</p>" +
+	          "<p>Remaining Guesses: " + guessesRemaining + "</p>" +
+	          "<p>Wins: " + wins + "</p>";
 
 	        // Set the inner HTML contents of the #game div to our html string
 	        document.querySelector("#game").innerHTML = html;
+ };    //>>> end of fucntion(event)
+
+
+
+
+
+
+
+
+	// var html =
+
+	//           "<p>Word: " + blankLetterArrayStart.join("   ") + "</p>" +
+	//           "<p>lettersGuessed: " + wordSelected + "</p>" +
+	//           "<p>wins: " + wins + "</p>";
+
+	//         // Set the inner HTML contents of the #game div to our html string
+	//         document.querySelector("#game").innerHTML = html;
 
 
