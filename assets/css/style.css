@@ -1,11 +1,64 @@
 body {
-    background-image: url("../images/wave.jpg");
+		background-image: url("../images/wave.jpg");
+  /*  background-image: url("http://img.freepik.com/free-vector/blue-and-green-wavy-background_1035-7430.jpg?size=338&ext=jpg");*/
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    bottom: 0px;
+}
+
+.btn {
+	margin: 5px;
+	border-radius: 20px;
+  	border: 3px solid #BADA55;
+}
+
+.btn-group {
+	width: 50%;
+	padding: 20px;
+}	
+.jumbotron h1, p {
+	font-family: 'Frijole', cursive;
+
+}
+
+.jumbotron {
+	background-image: url("../images/wave.jpg");
+	color: white;
+  	border-bottom: 3px solid #BADA55;
+  	padding: 1px 0px 20px 0px;
+    background-image: linear-gradient(to bottom, #BADA55 50%, rgb(229, 101, 37) 100%), linear-gradient(to bottom, rgb(229, 101, 37) 60%, #75ccd2 100%);
+    background-clip: content-box, padding-box;
+
+
 }
 
 #game_section {
-	background-color: white;
+	border-radius: 10px;
+  	border: 3px solid #BADA55;
+  	padding: 20px;
+	background-image: url("http://www.clker.com/cliparts/K/H/t/x/U/E/pr-surfboard-hi.png");
+	background-repeat: no-repeat;
+	background-color: rgba(245, 245, 245, 0.66);
+/*	background-position: center; */
+/*	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: center;*/
+
+
+}
+
+
+
+
+#surfer_section p {
+	letter-spacing: 200%;
+	color: white;
+	font-size: 19pt;
 }
 
 #surfer_section {
-	background-color: white;
+	height: 500px;
 }
+
+
