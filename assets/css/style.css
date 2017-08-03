@@ -16,21 +16,56 @@ body {
 	border-radius: 20px;
   	border: 3px solid #BADA55;
 }
+.side-container {
+/*	padding: 20px;*/
+  	margin: 20px;
+/*  	background-color: white;*/
+  	height: 480px;
+  	position: relative;
+  /*	background-image: url("http://clipartandscrap.com/wp-content/uploads/2017/06/Fishing-pole-clipart-black-and-white-free.png");*/
+}
+
+
+.fishing-pole {
+
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+
+}
+
+/*.img-hor {
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+}*/
+
+.image {
+	position: relative;
+	bottom: -143px;
+	left: 117px;
+	right: 0px;
+	z-index: -1;
+	width: 150px;
+	height: 150px;
+}
+
 .content-container {
 
 	border-radius: 10px;
   	border: 1px solid #BADA55;
   	padding: 20px;
   	margin: 20px;
-/*	background-image: url("http://www.clker.com/cliparts/K/H/t/x/U/E/pr-surfboard-hi.png");
-	background-repeat: no-repeat;*/
 	background-color: rgba(245, 245, 245, 0.66);
 	height: 480px;
+/*	width: 260px;*/
 	position: relative;
-
-/*	display: flex;
-	justify-content: center;*/
 }
+
 .button-container {
 	position: absolute;
 	bottom: 20px;
@@ -39,6 +74,8 @@ body {
 
 .game-container{
 	position: absolute;
+	padding: 20px;
+	width: 100%;
 	right: 0px;
 	left: 0px;
 
@@ -87,21 +124,20 @@ body {
 
 #game p {
 	font-size: 18px;
-	margin: 0px 0px 30px 0px;
+	margin: 0px 0px 15px 0px;
 }
 
-#word {
+/*#word {
 	margin: 0px 0px 35px 0px;
 }
+*/
 
 
 
-
-
-#surfer_section p {
-	letter-spacing: 200%;
+.text {
+	font-size: 14pt;
 	color: white;
-	font-size: 19pt;
+
 }
 
 
