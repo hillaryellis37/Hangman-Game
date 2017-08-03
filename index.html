@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
   <link href="https://fonts.googleapis.com/css?family=Frijole" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -21,48 +22,52 @@
 		<div class="row">
 			<div id="surfer_section" class="col-xs-12 col-sm-4 col-md-4">
 				<p class="text-center"> Dont let surfer Micah get eaten by a shark! Guess the word to save him! Choose a letter...!</p>
-<!-- 				<img class="img-responsive" src="https://i.makeagif.com/media/9-19-2015/Dk1h-L.gif"> -->
+				<img class="img-responsive" src="https://i.makeagif.com/media/9-19-2015/Dk1h-L.gif">
 			</div>
-			<div id="game_section" class="col-xs-12 col-sm-8 col-md-8">
-				<div class="text-center" id="game">
-			  		<p>Word: </p>	
-			    	<p>Letters Guessed: </p>
-			    	<p>Remaining Guesses: </p>
-			    	<p>Wins: 0</p>
-				</div> 
-				<div id="button" class="text-center">
-					<button id="restart">Restart</button>
-				</div>
-				<div class="button-container center-block">
-					<div class="btn-toolbar">
-					    <div class="btn-group btn-group-sm">
-						    <button class="btn btn-default">A</button>
-						    <button class="btn btn-default">B</button>
-						    <button class="btn btn-default">C</button>
-						    <button class="btn btn-default">D</button>
-						    <button class="btn btn-default">E</button>
-						    <button class="btn btn-default">F</button>
-						    <button class="btn btn-default">G</button>
-						    <button class="btn btn-default">H</button>
-						    <button class="btn btn-default">I</button>
-						    <button class="btn btn-default">J</button>
-						    <button class="btn btn-default">K</button>
-						    <button class="btn btn-default">L</button>
-						    <button class="btn btn-default">M</button>
-						    <button class="btn btn-default">N</button>
-						    <button class="btn btn-default">O</button>
-						    <button class="btn btn-default">P</button>
-						    <button class="btn btn-default">Q</button>
-						    <button class="btn btn-default">R</button>
-						    <button class="btn btn-default">S</button>
-						    <button class="btn btn-default">T</button>
-						    <button class="btn btn-default">U</button>
-						    <button class="btn btn-default">V</button>
-						    <button class="btn btn-default">W</button>
-						    <button class="btn btn-default">X</button>
-						    <button class="btn btn-default">Y</button>
-						    <button class="btn btn-default">Z</button>
-					    </div>
+			<div class="col-xs-12 col-sm-8 col-md-8">
+				<div class="content-container"> 
+					<div class="button-container">
+						<div class="btn-toolbar">
+						    <div class="btn-group btn-group-sm">
+							    <button class="btn btn-default">A</button>
+							    <button class="btn btn-default">B</button>
+							    <button class="btn btn-default">C</button>
+							    <button class="btn btn-default">D</button>
+							    <button class="btn btn-default">E</button>
+							    <button class="btn btn-default">F</button>
+							    <button class="btn btn-default">G</button>
+							    <button class="btn btn-default">H</button>
+							    <button class="btn btn-default">I</button>
+							    <button class="btn btn-default">J</button>
+							    <button class="btn btn-default">K</button>
+							    <button class="btn btn-default">L</button>
+							    <button class="btn btn-default">M</button>
+							    <button class="btn btn-default">N</button>
+							    <button class="btn btn-default">O</button>
+							    <button class="btn btn-default">P</button>
+							    <button class="btn btn-default">Q</button>
+							    <button class="btn btn-default">R</button>
+							    <button class="btn btn-default">S</button>
+							    <button class="btn btn-default">T</button>
+							    <button class="btn btn-default">U</button>
+							    <button class="btn btn-default">V</button>
+							    <button class="btn btn-default">W</button>
+							    <button class="btn btn-default">X</button>
+							    <button class="btn btn-default">Y</button>
+							    <button class="btn btn-default">Z</button>
+						    </div>
+						</div>
+					</div>
+					<div class="game-container">
+						<div class="text-center" id="game">
+					  		<p id="word">Word: </p>
+					    	<p>Letters Guessed: </p>				    	
+					    	<p>Remaining Guesses: </p>				    	
+					    	<p>Wins: 0</p>
+						</div> 
+						<div id="restart" class="text-center">
+							<button id="restart">Restart</button>
+						</div>
 					</div>
 				</div>
 			<div>
