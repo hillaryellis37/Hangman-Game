@@ -14,7 +14,14 @@
 <body>
 
 	<div id="top-to-bottom" class="jumbotron">
-	  <h1 class="display-3 text-center">WAPAHH!</h1>
+		<h1 class="display-3 text-center">WAPAHH!</h1>
+
+		<audio id="myAudio">
+  			<source src="assets/audio/pitted.mp3" type="audio/mpeg">
+		</audio>
+		<button onclick="playAudio()" type="button">Play Audio</button>
+		<button onclick="pauseAudio()" type="button">Pause Audio</button> 
+
 
 <!-- 	  <hr class="my-4"> -->
 	</div>
@@ -39,33 +46,33 @@
 				<div class="content-container"> 
 					<div class="button-container">
 						<div class="btn-toolbar">
-						    <div class="btn-group btn-group-sm">
-							    <button class="btn btn-default">A</button>
-							    <button class="btn btn-default">B</button>
-							    <button class="btn btn-default">C</button>
-							    <button class="btn btn-default">D</button>
-							    <button class="btn btn-default">E</button>
-							    <button class="btn btn-default">F</button>
-							    <button class="btn btn-default">G</button>
-							    <button class="btn btn-default">H</button>
-							    <button class="btn btn-default">I</button>
-							    <button class="btn btn-default">J</button>
-							    <button class="btn btn-default">K</button>
-							    <button class="btn btn-default">L</button>
-							    <button class="btn btn-default">M</button>
-							    <button class="btn btn-default">N</button>
-							    <button class="btn btn-default">O</button>
-							    <button class="btn btn-default">P</button>
-							    <button class="btn btn-default">Q</button>
-							    <button class="btn btn-default">R</button>
-							    <button class="btn btn-default">S</button>
-							    <button class="btn btn-default">T</button>
-							    <button class="btn btn-default">U</button>
-							    <button class="btn btn-default">V</button>
-							    <button class="btn btn-default">W</button>
-							    <button class="btn btn-default">X</button>
-							    <button class="btn btn-default">Y</button>
-							    <button class="btn btn-default">Z</button>
+						    <div id="button_div" class="btn-group btn-group-sm">
+<!-- 							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">A</button>
+							    <button id="letter_b" name="b" onclick="letterClick()" class="btn btn-default">B</button>
+							    <button id="letter_c" name="c" onclick="letterClick()" class="btn btn-default">C</button>
+							    <button id="letter_d" name="d" onclick="letterClick()" class="btn btn-default">D</button>
+							    <button id="letter_e" name="e" onclick="letterClick()" class="btn btn-default">E</button>
+							    <button id="letter_a" name="f" onclick="letterClick()" class="btn btn-default">F</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">G</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">H</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">I</button>
+						 	    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">J</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">K</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">L</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">M</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">N</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">O</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">P</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">Q</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">R</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">S</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">T</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">U</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">V</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">W</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">X</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">Y</button>
+							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">Z</button> -->
 						    </div>
 						</div>
 					</div>

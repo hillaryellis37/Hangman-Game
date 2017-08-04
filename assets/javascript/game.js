@@ -6,8 +6,23 @@
   var blankLetterArrayStart = [];
   var guessesCorrect = 0;
   var guessesRemaining = 8;
-  var userGuessRecord = [1]; //>>> this is to prevent the user from enterting a letter more than once
+  var userGuessRecord = [1];
+  var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]; //>>> this is to prevent the user from enterting a letter more than once
 // This function calculates a random int including min and max values.
+function createButtons() {
+
+	for (var i = 0; i < letters.length; i++) {
+	    var buttonElement = document.createElement("BUTTON");
+	    var l = document.createTextNode(letters[i]);
+	    buttonElement.appendChild(l);
+	    buttonElement.className = "btn btn-default";
+	    buttonElement.setAttribute("data-letter", letters[i]);
+	    document.getElementById("button_div").appendChild(buttonElement);
+	}    
+}
+
+
+
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -81,7 +96,61 @@ var html =
 	        document.querySelector("#game").innerHTML = html;
 }
 
-startfunction();
+function letterClick() {
+
+ 		var i = "a";
+	   // Determines which key was pressed.
+    	var userGuess = document.getElementById("this").name;
+
+
+    	console.log(userGuess);
+    	
+      	userGuessRecord.push(userGuess);
+      	var indices = [];
+      	var x = lettersInArray(userGuessRecord, userGuess);
+      		// This if statements finds the indices of all the digits in which the letter occurs
+			if (x) {
+				alert("You have already chosen this letter. Please try another letter.");
+			} else {
+				if (wordSelected.includes(userGuess)) {
+
+					lettersGuessed.push(userGuess);	
+
+					for (var i = 0; i < wordSelected.length; i++) {
+						if (wordSelected[i] === userGuess) indices.push(i);						
+					}
+					for (var j = 0; j < indices.length; j++) {
+						guessesCorrect = guessesCorrect + 1;
+						blankLetterArrayStart[indices[j]] = userGuess;						
+					}
+
+				} else {
+					guessesRemaining = guessesRemaining - 1;
+					lettersGuessed.push(userGuess);				
+				}
+				if (wordSelected.length === guessesCorrect) {
+						alert("you win!");
+						wins = wins + 1;
+						resetStats();
+						startfunction();
+				} 
+				if (guessesRemaining === 0) {
+						alert("you lose!")
+						resetStats();
+						startfunction();
+				}
+			}
+var html =
+
+	          "<p>Word: " + blankLetterArrayStart.join("   ").toUpperCase() + "</p>" +
+	          "<p>Letters Guessed: " + lettersGuessed.join("   ").toUpperCase() + "</p>" +
+	          "<p>Remaining Guesses: " + guessesRemaining + "</p>" +
+	          "<p>Wins: " + wins + "</p>";
+
+	        // Set the inner HTML contents of the #game div to our html string
+	        document.querySelector("#game").innerHTML = html;
+ };    //>>> end of fucntion(event)
+
 
 
 document.onkeyup = function(event) {
@@ -136,7 +205,8 @@ var html =
 
 
 
-
+startfunction();
+createButtons();
 
 
 

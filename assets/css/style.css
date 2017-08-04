@@ -6,8 +6,9 @@ html, body {
 body {
 	background-image: url("../images/wave.jpg");
   /*  background-image: url("http://img.freepik.com/free-vector/blue-and-green-wavy-background_1035-7430.jpg?size=338&ext=jpg");*/
-    background-size: 100% 100%;
+/*    background-size: 100% 100%;*/
     background-repeat: no-repeat;
+    background-size:cover;
     bottom: 0px;
 }
 
