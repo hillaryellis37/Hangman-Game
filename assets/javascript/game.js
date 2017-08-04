@@ -1,7 +1,9 @@
+
+  
   var words = ["wetsuit", "surfboard", "bikini", "pitted", "barrel", "swell"];
 
   var wins = 0;
-  var wordSelected = ""
+  var wordSelected = "";
   var lettersGuessed = [];
   var blankLetterArrayStart = [];
   var guessesCorrect = 0;
@@ -15,7 +17,7 @@ function createButtons() {
 	    var buttonElement = document.createElement("BUTTON");
 	    var l = document.createTextNode(letters[i]);
 	    buttonElement.appendChild(l);
-	    buttonElement.className = "btn btn-default";
+	    buttonElement.className = "letter-button btn btn-default";
 	    buttonElement.setAttribute("data-letter", letters[i]);
 	    document.getElementById("button_div").appendChild(buttonElement);
 	}    
@@ -96,23 +98,35 @@ var html =
 	        document.querySelector("#game").innerHTML = html;
 }
 
-function letterClick() {
 
- 		var i = "a";
-	   // Determines which key was pressed.
-    	var userGuess = document.getElementById("this").name;
+ $(document).ready(function() {
 
 
-    	console.log(userGuess);
-    	
+
+
+
+		var classname = document.getElementsByClassName("letter-button");
+
+		
+		var getAttributeFunction = function() {
+			var attribute = $(this).attr("data-letter");			
+			var userGuess = attribute.toLowerCase();
+
+
       	userGuessRecord.push(userGuess);
+
       	var indices = [];
       	var x = lettersInArray(userGuessRecord, userGuess);
       		// This if statements finds the indices of all the digits in which the letter occurs
+
+
 			if (x) {
 				alert("You have already chosen this letter. Please try another letter.");
 			} else {
+
 				if (wordSelected.includes(userGuess)) {
+
+
 
 					lettersGuessed.push(userGuess);	
 
@@ -145,78 +159,25 @@ var html =
 	          "<p>Word: " + blankLetterArrayStart.join("   ").toUpperCase() + "</p>" +
 	          "<p>Letters Guessed: " + lettersGuessed.join("   ").toUpperCase() + "</p>" +
 	          "<p>Remaining Guesses: " + guessesRemaining + "</p>" +
+
 	          "<p>Wins: " + wins + "</p>";
 
 	        // Set the inner HTML contents of the #game div to our html string
 	        document.querySelector("#game").innerHTML = html;
- };    //>>> end of fucntion(event)
 
 
 
-document.onkeyup = function(event) {
-	   // Determines which key was pressed.
-    	var userGuess = event.key;
-      	userGuessRecord.push(userGuess);
-      	var indices = [];
-      	var x = lettersInArray(userGuessRecord, userGuess);
-      		// This if statements finds the indices of all the digits in which the letter occurs
-			if (x) {
-				alert("You have already chosen this letter. Please try another letter.");
-			} else {
-				if (wordSelected.includes(userGuess)) {
-
-					lettersGuessed.push(userGuess);	
-
-					for (var i = 0; i < wordSelected.length; i++) {
-						if (wordSelected[i] === userGuess) indices.push(i);						
-					}
-					for (var j = 0; j < indices.length; j++) {
-						guessesCorrect = guessesCorrect + 1;
-						blankLetterArrayStart[indices[j]] = userGuess;						
-					}
-
-				} else {
-					guessesRemaining = guessesRemaining - 1;
-					lettersGuessed.push(userGuess);				
-				}
-				if (wordSelected.length === guessesCorrect) {
-						alert("you win!");
-						wins = wins + 1;
-						resetStats();
-						startfunction();
-				} 
-				if (guessesRemaining === 0) {
-						alert("you lose!")
-						resetStats();
-						startfunction();
-				}
-			}
-var html =
-
-	          "<p>Word: " + blankLetterArrayStart.join("   ").toUpperCase() + "</p>" +
-	          "<p>Letters Guessed: " + lettersGuessed.join("   ").toUpperCase() + "</p>" +
-	          "<p>Remaining Guesses: " + guessesRemaining + "</p>" +
-	          "<p>Wins: " + wins + "</p>";
-
-	        // Set the inner HTML contents of the #game div to our html string
-	        document.querySelector("#game").innerHTML = html;
- };    //>>> end of fucntion(event)
+		};
 
 
+		for (var i = 0; i < classname.length; i++) {
+			classname[i].addEventListener("click", getAttributeFunction, false);
+		}
+			
+});
 
 
 startfunction();
 createButtons();
-
-
-
-	// var html =
-
-	//           "<p>Word: " + blankLetterArrayStart.join("   ") + "</p>" +
-	//           "<p>lettersGuessed: " + wordSelected + "</p>" +
-	//           "<p>wins: " + wins + "</p>";
-
-	//         // Set the inner HTML contents of the #game div to our html string
-	//         document.querySelector("#game").innerHTML = html;
 
 
