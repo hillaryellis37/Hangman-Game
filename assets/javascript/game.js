@@ -24,7 +24,33 @@ function createButtons() {
 	}    
 }
 
+function animateShark() {
 
+	var shark = document.getElementById("img_shark");
+	var style = window.getComputedStyle(shark);
+	var startWidth = style.getPropertyValue('width');
+	var startHeight = style.getPropertyValue('height');
+	var startWidthInt = Number(startWidth.replace('px', ''));
+	var startHeightInt = Number(startHeight.replace('px', ''));
+
+
+	var newWidth = 0;
+	var newHeight = 0;
+	var interval = setInterval(frame, 50);
+
+	function frame() {
+		if ((newWidth + startWidthInt) == (startWidthInt + 18)) {
+			clearInterval(interval);	
+		} else {
+		newWidth++;
+		newHeight++;
+		shark.style.width = (startWidthInt + newWidth) + "px";
+		shark.style.height = (startHeightInt + newHeight) + "px";
+console.log(newWidth);
+		}
+	}
+
+}
 
 
 
@@ -71,19 +97,27 @@ function lettersInArray(array, value) {
 
 // this button restarts the game and sets points to zero:
 document.getElementById("restart").onclick = function(restartButton) {
-	wins = 0
-  	wordSelected = "";
-  	lettersGuessed = [];
-  	blankLetterArrayStart = [];
-  	guessesCorrect = 0;
-  	guessesRemaining = 8;
-  	userGuessRecord = [1];
+	wins = 0;
   	startfunction();
 }
 
 // this function resets the word when a win or loss occurs:
-function resetStats() {
-  	wordSelected = "";
+// function resetStats() {
+//   	wordSelected = "";
+//   	lettersGuessed = [];
+//   	blankLetterArrayStart = [];
+//   	guessesCorrect = 0;
+//   	guessesRemaining = 8;
+//   	userGuessRecord = [1];
+//   	document.getElementById("img_surfer").style.opacity = 1;
+//   	document.getElementById("img_shark").style.opacity = 0;
+//   	document.getElementById("img_shark").style.height = 100 + "px";
+//   	document.getElementById("img_shark").style.width = 100 + "px";
+// }
+
+// this function starts off the game and displays the blank letters to html after selecting a random word from the words list:
+function startfunction() {
+	wordSelected = "";
   	lettersGuessed = [];
   	blankLetterArrayStart = [];
   	guessesCorrect = 0;
@@ -91,14 +125,19 @@ function resetStats() {
   	userGuessRecord = [1];
   	document.getElementById("img_surfer").style.opacity = 1;
   	document.getElementById("img_shark").style.opacity = 0;
-}
+  	document.getElementById("img_shark").style.height = 100 + "px";
+  	document.getElementById("img_shark").style.width = 100 + "px";
+  	var shark = document.getElementById("img_shark");
+	var style = window.getComputedStyle(shark);
+	var startWidth = style.getPropertyValue('width');
+	var startHeight = style.getPropertyValue('height');
+	var startWidthInt = Number(startWidth.replace('px', ''));
+	var startHeightInt = Number(startHeight.replace('px', ''));
+	console.log(startWidthInt);
 
-// this function starts off the game and displays the blank letters to html after selecting a random word from the words list:
-function startfunction() {
 	wordToBlanks();
-	console.log(wordSelected);
-	document.getElementById("img_surfer").style.opacity = 1;
-	document.getElementById("img_shark").style.opacity = 0;
+
+
 
 var html =
 
@@ -133,42 +172,49 @@ var html =
       		// This if statements finds the indices of all the digits in which the letter occurs
 
 			if (x) {
+				
 				alert("You have already chosen this letter. Please try another letter.");
-			} else {
 
-				if (wordSelected.includes(userGuess)) {
+			} else {	
+						if (wordSelected.includes(userGuess)) {
+							lettersGuessed.push(userGuess);	
 
-					lettersGuessed.push(userGuess);	
+							for (var i = 0; i < wordSelected.length; i++) {
+								if (wordSelected[i] === userGuess) indices.push(i);						
+							}
+					
+							for (var j = 0; j < indices.length; j++) {
+								guessesCorrect = guessesCorrect + 1;
+								blankLetterArrayStart[indices[j]] = userGuess;						
+							}
 
-					for (var i = 0; i < wordSelected.length; i++) {
-						if (wordSelected[i] === userGuess) indices.push(i);						
+							if (wordSelected.length === guessesCorrect) {
+								var winnerAudio = new Audio("assets/audio/wapahh.mp3");
+								winnerAudio.play();
+								alert("you win!");
+								wins = wins + 1;
+								startfunction();
+							}
+						}
+
+						else { 
+
+							if (guessesRemaining === 1) {
+								var loserAudio = new Audio("assets/audio/bahh.mp3");
+								loserAudio.play();
+								alert("you lose!");
+								startfunction();
+						
+							} else {
+								guessesRemaining = guessesRemaining - 1;
+								lettersGuessed.push(userGuess);
+					// document.getElementById("img_surfer").style.opacity = Math.pow(guessesRemaining + 4, 2)/100;
+								document.getElementById("img_shark").style.opacity = Math.pow(10 - guessesRemaining, 2)/100;
+								animateShark();
+							}
+
+						}
 					}
-					for (var j = 0; j < indices.length; j++) {
-						guessesCorrect = guessesCorrect + 1;
-						blankLetterArrayStart[indices[j]] = userGuess;						
-					}
-
-				} else {
-					guessesRemaining = guessesRemaining - 1;
-					lettersGuessed.push(userGuess);
-					document.getElementById("img_surfer").style.opacity = Math.pow(guessesRemaining + 4, 2)/100;
-					document.getElementById("img_shark").style.opacity = Math.pow(10 - guessesRemaining, 2)/100;
-					console.log(Math.pow(10 - guessesRemaining, 2)/100);
-
-
-				}
-				if (wordSelected.length === guessesCorrect) {
-						alert("you win!");
-						wins = wins + 1;
-						resetStats();
-						startfunction();
-				} 
-				if (guessesRemaining === 0) {
-						alert("you lose!")
-						resetStats();
-						startfunction();
-				}
-			}
 var html =
 
 	          "<p>Word: " + blankLetterArrayStart.join("   ").toUpperCase() + "</p>" +

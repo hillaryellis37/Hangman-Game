@@ -39,6 +39,12 @@ body {
 	opacity: 1;
 }
 
+#img_shark{
+	position: absolute;
+	width: 100px;
+	height: 100px;
+}
+
 .content-container {
 
 	border-radius: 10px;
