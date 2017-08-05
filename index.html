@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Frijole" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -16,15 +17,6 @@
 
 	<div id="top-to-bottom" class="jumbotron">
 		<h1 class="display-3 text-center">WAPAHH!</h1>
-
-<!-- 		<audio id="myAudio">
-  			<source src="assets/audio/pitted.mp3" type="audio/mpeg">
-		</audio>
-		<button onclick="playAudio()" type="button">Play Audio</button>
-		<button onclick="pauseAudio()" type="button">Pause Audio</button>  -->
-
-
-<!-- 	  <hr class="my-4"> -->
 	</div>
 	<div class="container">
 		<div class="row">
@@ -34,10 +26,13 @@
 						<!-- <img class="img-hor img-responsive" src="http://clipartandscrap.com/wp-content/uploads/2017/06/Fishing-pole-clipart-black-and-white-free.png"> -->
 						<img id="img_surfer" class="image img-hor img-responsive" src="assets/images/surfer.svg">
 						<img id="img_shark" src="http://www.vectorgenius.com/images/Rendered/Rendered%20Vector/2-Shark%20Attack%20Vector%20Graphic/2-Main-vector-Shark-Attack.png">
+						<img id="img_blood" src="assets/images/blood.png">
+						<img id="surfer_gif" src= "https://i.makeagif.com/media/9-19-2015/Dk1h-L.gif">
 					</div>
-<!-- 					<div class="text">
-						<p class="text-center"> Dont let surfer Micah get eaten by a shark! Guess the word to save him! Choose a letter...!</p>
-					</div> -->
+					<div class="text">
+						<p id="instructions" class="text-center"> Dont let surfer Micah get eaten by a shark! Guess the word to save him! Choose a letter...!</p>
+						<!-- <img src=""> -->
+					</div>
 <!-- 					<div class="image">	
 						<img class="img-hor img-responsive" src="assets/images/surfer.svg">
 					</div> -->
@@ -49,41 +44,16 @@
 					<div class="button-container">
 						<div class="btn-toolbar">
 						    <div id="button_div" class="btn-group btn-group-sm">
-<!-- 							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">A</button>
-							    <button id="letter_b" name="b" onclick="letterClick()" class="btn btn-default">B</button>
-							    <button id="letter_c" name="c" onclick="letterClick()" class="btn btn-default">C</button>
-							    <button id="letter_d" name="d" onclick="letterClick()" class="btn btn-default">D</button>
-							    <button id="letter_e" name="e" onclick="letterClick()" class="btn btn-default">E</button>
-							    <button id="letter_a" name="f" onclick="letterClick()" class="btn btn-default">F</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">G</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">H</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">I</button>
-						 	    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">J</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">K</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">L</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">M</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">N</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">O</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">P</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">Q</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">R</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">S</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">T</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">U</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">V</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">W</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">X</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">Y</button>
-							    <button id="letter_a" name="a" onclick="letterClick()" class="btn btn-default">Z</button> -->
+						    <!-- javascript builds buttons here on load -->
 						    </div>
 						</div>
 					</div>
 					<div class="game-container">
 						<div class="text-center" id="game">
-					  		<p id="word">Word: </p>
-					    	<p>Letters Guessed: </p>				    	
-					    	<p>Remaining Guesses: </p>				    	
-					    	<p>Wins: 0</p>
+					  		<p class="game-text" id="word">Word: </p>
+					    	<p class="game-text">Letters Guessed: </p>				    	
+					    	<p class="game-text">Remaining Guesses: </p>				    	
+					    	<p class="game-text">Wins: 0</p>
 						</div> 
 						<div id="restart" class="text-center">
 							<button id="restart">Restart</button>

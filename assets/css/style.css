@@ -33,18 +33,40 @@ body {
 	bottom: -143px;
 	left: 117px;
 	right: 0px;
-/*	z-index: -1;*/
+	z-index: -1;
 	width: 150px;
 	height: 150px;
-	opacity: 1;
+	opacity: 2;
 }
 
 #img_shark{
 	position: absolute;
 	width: 100px;
 	height: 100px;
+	z-index: -2;
+	position: absolute;
 }
 
+#img_blood{
+    position: absolute;
+    top: 216px;
+    bottom: 414px;
+    right: 0px;
+    left: 150px;
+    width: 50px;
+    height:50px;
+    opacity: 0;
+}
+
+#surfer_gif {
+	position: absolute;
+    top: 77px;
+    left: -69px;
+    right: 0px;
+    width: 400px;
+    height: 300px;
+    opacity: 0;
+}
 .content-container {
 
 	border-radius: 10px;
@@ -74,8 +96,12 @@ body {
 	align-self: center;
 }
 
-.jumbotron h1, p {
+.jumbotron h1 {
 	font-family: 'Frijole', cursive;
+	color: #fff;
+    font-size: 48px;
+    font-weight: bold;
+    text-shadow: #afe222 1px 1px, #000 2px 2px, #000 3px 3px;
 }
 
 .jumbotron {
@@ -90,13 +116,16 @@ body {
 #game p {
 	font-size: 17px;
 	margin: 0px 0px 15px 0px;
+	font-family: 'Frijole', cursive;
 }
 
 
 .text {
 	font-size: 14pt;
 	color: white;
+	font-family: 'Gloria Hallelujah', cursive;
 }
+
 
 
 

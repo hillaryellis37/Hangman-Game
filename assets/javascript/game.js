@@ -36,23 +36,125 @@ function animateShark() {
 
 	var newWidth = 0;
 	var newHeight = 0;
-	var interval = setInterval(frame, 50);
+	var interval = setInterval(frame, 10);
 
 	function frame() {
-		if ((newWidth + startWidthInt) == (startWidthInt + 18)) {
+		if ((newWidth + startWidthInt) == (startWidthInt + 29)) {
 			clearInterval(interval);	
 		} else {
 		newWidth++;
 		newHeight++;
 		shark.style.width = (startWidthInt + newWidth) + "px";
 		shark.style.height = (startHeightInt + newHeight) + "px";
-console.log(newWidth);
 		}
 	}
 
 }
 
 
+function animateBlood() {
+
+	var blood = document.getElementById("img_blood");
+	var opacity = 0;
+	var width = 400;
+	var height = 400;
+	var interval = setInterval(frame, 1);
+
+	function frame() {
+		if (width === 500) {
+			clearInterval(interval);
+		} else {
+			width++;
+			height++;
+			opacity = opacity + .01;
+
+			blood.style.width = width + "px";
+			blood.style.height = height + "px";
+			blood.style.opacity = opacity;
+			blood.style.top = 0 + "px";
+			blood.style.bottom = -20 + "px"; 
+			blood.style.left = -74 + "px";
+		}
+
+	}
+}
+
+function resetBlood() {
+
+	var blood = document.getElementById("img_blood");
+
+	var width = -50;
+	var height = -50;
+	var interval = setInterval(frame, 20);
+
+	function frame() {
+		if (width === 50) {
+			clearInterval(interval);
+		} else {
+			width++;
+			height++;
+
+
+			blood.style.width = width + "px";
+			blood.style.height = height + "px";
+			blood.style.opacity = 0;
+			blood.style.top = 216 + "px";
+			blood.style.bottom = 414 + "px"; 
+			blood.style.left = 150 + "px";
+		}
+
+	}
+}
+
+
+
+
+function resetGif() {
+
+	var gif = document.getElementById("surfer_gif");
+
+	var opacity = 1;
+	
+	var interval = setInterval(frame, 25);
+
+	function frame() {
+		if (opacity === 0) {
+			clearInterval(interval);
+		} else {
+			opacity = opacity - .01;
+			gif.style.opacity = opacity;
+
+		}
+
+	}
+}
+
+function fadeInstructions() {
+
+	var instructions = document.getElementById("instructions");
+	var style = window.getComputedStyle(instructions);
+	var opacity = style.getPropertyValue('opacity');
+
+	if ((userGuessRecord.length === 1) && (opacity === "1")) {
+			
+		var instructions = document.getElementById("instructions");
+
+		var opacity = 1;
+	
+		var interval = setInterval(frame, 15);
+
+		function frame() {
+			if (opacity === 0) {
+				clearInterval(interval);
+			} else {
+				opacity = opacity - .01;
+				instructions.style.opacity = opacity;
+
+			}
+
+		}
+	} else { null }	
+}
 
 
 
@@ -73,7 +175,6 @@ function getWord() {
 // This function takes the length of the chosen word and replaces adds that many blanks to an array. Returns an array of blanks
 function wordToBlanks() {
 	var wordLength = getWord().length;
-	console.log(wordSelected);
 	
 	for (var i = 0; i < wordLength; i++) {
 	blankLetterArrayStart.push("_");
@@ -101,21 +202,7 @@ document.getElementById("restart").onclick = function(restartButton) {
   	startfunction();
 }
 
-// this function resets the word when a win or loss occurs:
-// function resetStats() {
-//   	wordSelected = "";
-//   	lettersGuessed = [];
-//   	blankLetterArrayStart = [];
-//   	guessesCorrect = 0;
-//   	guessesRemaining = 8;
-//   	userGuessRecord = [1];
-//   	document.getElementById("img_surfer").style.opacity = 1;
-//   	document.getElementById("img_shark").style.opacity = 0;
-//   	document.getElementById("img_shark").style.height = 100 + "px";
-//   	document.getElementById("img_shark").style.width = 100 + "px";
-// }
 
-// this function starts off the game and displays the blank letters to html after selecting a random word from the words list:
 function startfunction() {
 	wordSelected = "";
   	lettersGuessed = [];
@@ -127,13 +214,6 @@ function startfunction() {
   	document.getElementById("img_shark").style.opacity = 0;
   	document.getElementById("img_shark").style.height = 100 + "px";
   	document.getElementById("img_shark").style.width = 100 + "px";
-  	var shark = document.getElementById("img_shark");
-	var style = window.getComputedStyle(shark);
-	var startWidth = style.getPropertyValue('width');
-	var startHeight = style.getPropertyValue('height');
-	var startWidthInt = Number(startWidth.replace('px', ''));
-	var startHeightInt = Number(startHeight.replace('px', ''));
-	console.log(startWidthInt);
 
 	wordToBlanks();
 
@@ -158,10 +238,12 @@ var html =
  $(document).ready(function() {
 
 
-
 		var classname = document.getElementsByClassName("letter-button");
 	
 		var getAttributeFunction = function() {
+			
+			fadeInstructions();
+			
 			var attribute = this.getAttribute("data-letter");			
 			var userGuess = attribute.toLowerCase();
 
@@ -189,11 +271,13 @@ var html =
 							}
 
 							if (wordSelected.length === guessesCorrect) {
+								document.getElementById("surfer_gif").style.opacity = 1;
 								var winnerAudio = new Audio("assets/audio/wapahh.mp3");
 								winnerAudio.play();
 								alert("you win!");
 								wins = wins + 1;
 								startfunction();
+								resetGif();
 							}
 						}
 
@@ -202,8 +286,10 @@ var html =
 							if (guessesRemaining === 1) {
 								var loserAudio = new Audio("assets/audio/bahh.mp3");
 								loserAudio.play();
-								alert("you lose!");
+								animateBlood();
 								startfunction();
+								resetBlood();
+
 						
 							} else {
 								guessesRemaining = guessesRemaining - 1;
