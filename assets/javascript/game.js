@@ -10,21 +10,28 @@
   var guessesRemaining = 8;
   var userGuessRecord = [1];
   var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]; //>>> this is to prevent the user from enterting a letter more than once
-// This function calculates a random int including min and max values.
-function createButtons() {
 
+//function that creates buttons:
+function createButtons() {
 	for (var i = 0; i < letters.length; i++) {
 	    var buttonElement = document.createElement("BUTTON");
 	    var l = document.createTextNode(letters[i]);
 	    buttonElement.appendChild(l);
 	    buttonElement.className = "letter-button btn btn-default";
 	    buttonElement.setAttribute("data-letter", letters[i]);
+	    buttonElement.setAttribute("onclick", "audioButton.play()");
 	    document.getElementById("button_div").appendChild(buttonElement);
 	}    
 }
 
 
 
+
+
+
+
+
+// function to generate random number:
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -62,6 +69,7 @@ function lettersInArray(array, value) {
 	}
 }
 
+// this button restarts the game and sets points to zero:
 document.getElementById("restart").onclick = function(restartButton) {
 	wins = 0
   	wordSelected = "";
@@ -73,6 +81,7 @@ document.getElementById("restart").onclick = function(restartButton) {
   	startfunction();
 }
 
+// this function resets the word when a win or loss occurs:
 function resetStats() {
   	wordSelected = "";
   	lettersGuessed = [];
@@ -80,12 +89,14 @@ function resetStats() {
   	guessesCorrect = 0;
   	guessesRemaining = 8;
   	userGuessRecord = [1];
+  	document.getElementById("img_surfer").style.opacity = 1;
 }
 
+// this function starts off the game and displays the blank letters to html after selecting a random word from the words list:
 function startfunction() {
 	wordToBlanks();
 	console.log(wordSelected);
-
+	document.getElementById("img_surfer").style.opacity = 1;
 
 var html =
 
@@ -99,19 +110,19 @@ var html =
 }
 
 
+
+
+// all game logic:
+
  $(document).ready(function() {
 
 
 
-
-
 		var classname = document.getElementsByClassName("letter-button");
-
-		
+	
 		var getAttributeFunction = function() {
-			var attribute = $(this).attr("data-letter");			
+			var attribute = this.getAttribute("data-letter");			
 			var userGuess = attribute.toLowerCase();
-
 
       	userGuessRecord.push(userGuess);
 
@@ -119,14 +130,11 @@ var html =
       	var x = lettersInArray(userGuessRecord, userGuess);
       		// This if statements finds the indices of all the digits in which the letter occurs
 
-
 			if (x) {
 				alert("You have already chosen this letter. Please try another letter.");
 			} else {
 
 				if (wordSelected.includes(userGuess)) {
-
-
 
 					lettersGuessed.push(userGuess);	
 
@@ -140,7 +148,11 @@ var html =
 
 				} else {
 					guessesRemaining = guessesRemaining - 1;
-					lettersGuessed.push(userGuess);				
+					lettersGuessed.push(userGuess);
+					document.getElementById("img_surfer").style.opacity = guessesRemaining / 10;
+
+
+
 				}
 				if (wordSelected.length === guessesCorrect) {
 						alert("you win!");
@@ -165,8 +177,6 @@ var html =
 	        // Set the inner HTML contents of the #game div to our html string
 	        document.querySelector("#game").innerHTML = html;
 
-
-
 		};
 
 
@@ -174,7 +184,10 @@ var html =
 			classname[i].addEventListener("click", getAttributeFunction, false);
 		}
 			
-});
+}); //ready.function end
+
+var audioButton = new Audio();
+audioButton.src = "assets/audio/correct.mp3";
 
 
 startfunction();
