@@ -112,21 +112,30 @@ function resetBlood() {
 function resetGif() {
 
 	var gif = document.getElementById("surfer_gif");
+	var style = window.getComputedStyle(gif);
+	var opacity = style.getPropertyValue('opacity');
 
-	var opacity = 1;
+	console.log(opacity === "1");
+
+	if (opacity === "1") {
+		var newOpacity = 1;
 	
-	var interval = setInterval(frame, 25);
+		var interval = setInterval(frame, 5);
 
-	function frame() {
-		if (opacity === 0) {
-			clearInterval(interval);
-		} else {
-			opacity = opacity - .01;
-			gif.style.opacity = opacity;
+		function frame() {
+			if (newOpacity === 0) {
+				clearInterval(interval);
+			} else {
+				newOpacity = newOpacity - .25;
+				gif.style.opacity = newOpacity.toString();
+				
+
+			}
 
 		}
-
-	}
+	} else {
+		gif.style.opacity = "0";
+	}	
 }
 
 function fadeInstructions() {
@@ -137,18 +146,16 @@ function fadeInstructions() {
 
 	if ((userGuessRecord.length === 1) && (opacity === "1")) {
 			
-		var instructions = document.getElementById("instructions");
-
-		var opacity = 1;
+		var newOpacity = 1;
 	
-		var interval = setInterval(frame, 15);
+		var interval = setInterval(frame, 20);
 
 		function frame() {
-			if (opacity === 0) {
+			if (newOpacity === 0) {
 				clearInterval(interval);
 			} else {
-				opacity = opacity - .01;
-				instructions.style.opacity = opacity;
+				newOpacity = newOpacity - .25;
+				instructions.style.opacity = newOpacity.toString();
 
 			}
 
@@ -199,6 +206,8 @@ function lettersInArray(array, value) {
 // this button restarts the game and sets points to zero:
 document.getElementById("restart").onclick = function(restartButton) {
 	wins = 0;
+	document.getElementById("surfer_gif").style.opacity = "0";
+	document.getElementById("instructions").style.opacity = "1";
   	startfunction();
 }
 
@@ -210,10 +219,12 @@ function startfunction() {
   	guessesCorrect = 0;
   	guessesRemaining = 8;
   	userGuessRecord = [1];
-  	document.getElementById("img_surfer").style.opacity = 1;
-  	document.getElementById("img_shark").style.opacity = 0;
+  	document.getElementById("img_surfer").style.opacity = "1";
+  	document.getElementById("img_shark").style.opacity = "0";
   	document.getElementById("img_shark").style.height = 100 + "px";
   	document.getElementById("img_shark").style.width = 100 + "px";
+
+
 
 	wordToBlanks();
 
@@ -243,6 +254,7 @@ var html =
 		var getAttributeFunction = function() {
 			
 			fadeInstructions();
+			resetGif();
 			
 			var attribute = this.getAttribute("data-letter");			
 			var userGuess = attribute.toLowerCase();
@@ -277,7 +289,7 @@ var html =
 								alert("you win!");
 								wins = wins + 1;
 								startfunction();
-								resetGif();
+								// resetGif();
 							}
 						}
 

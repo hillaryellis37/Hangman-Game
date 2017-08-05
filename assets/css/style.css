@@ -62,10 +62,11 @@ body {
 	position: absolute;
     top: 77px;
     left: -69px;
-    right: 0px;
+    right: 70px;
     width: 400px;
     height: 300px;
     opacity: 0;
+    margin-left: 20px;
 }
 .content-container {
 
