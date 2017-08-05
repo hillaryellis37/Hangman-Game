@@ -206,7 +206,7 @@ function lettersInArray(array, value) {
 // this button restarts the game and sets points to zero:
 document.getElementById("restart").onclick = function(restartButton) {
 	wins = 0;
-	document.getElementById("surfer_gif").style.opacity = "0";
+	document.getElementById("surfer_gif").style.opacity = "1";
 	document.getElementById("instructions").style.opacity = "1";
   	startfunction();
 }

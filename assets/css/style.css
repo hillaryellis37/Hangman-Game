@@ -65,8 +65,9 @@ body {
     right: 70px;
     width: 400px;
     height: 300px;
-    opacity: 0;
+    opacity: 1;
     margin-left: 20px;
+    margin-top: 40px;
 }
 .content-container {
 
