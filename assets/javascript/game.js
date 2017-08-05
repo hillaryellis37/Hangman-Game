@@ -90,6 +90,7 @@ function resetStats() {
   	guessesRemaining = 8;
   	userGuessRecord = [1];
   	document.getElementById("img_surfer").style.opacity = 1;
+  	document.getElementById("img_shark").style.opacity = 0;
 }
 
 // this function starts off the game and displays the blank letters to html after selecting a random word from the words list:
@@ -97,6 +98,7 @@ function startfunction() {
 	wordToBlanks();
 	console.log(wordSelected);
 	document.getElementById("img_surfer").style.opacity = 1;
+	document.getElementById("img_shark").style.opacity = 0;
 
 var html =
 
@@ -149,8 +151,9 @@ var html =
 				} else {
 					guessesRemaining = guessesRemaining - 1;
 					lettersGuessed.push(userGuess);
-					document.getElementById("img_surfer").style.opacity = guessesRemaining / 10;
-
+					document.getElementById("img_surfer").style.opacity = Math.pow(guessesRemaining + 4, 2)/100;
+					document.getElementById("img_shark").style.opacity = Math.pow(10 - guessesRemaining, 2)/100;
+					console.log(Math.pow(10 - guessesRemaining, 2)/100);
 
 
 				}
